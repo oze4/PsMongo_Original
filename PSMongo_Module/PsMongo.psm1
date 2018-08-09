@@ -548,7 +548,7 @@ function New-MongoDatabase
 
 }
 
-function Connect-ToMongoDatabase
+function Bind-ToMongoDatabase
 {
 
     param(
