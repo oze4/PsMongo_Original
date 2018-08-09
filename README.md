@@ -4,27 +4,27 @@ Powershell module to interact with MongoDB
 
 <h3>Module Functions</h3>
 
-*Add-JsonDocumentIntoMongoCollection
+* Add-JsonDocumentIntoMongoCollection
 
-*Confirm-Selection
+* Confirm-Selection
 
-*Connect-MongoDatabase
+* Connect-MongoDatabase
 
-*Connect-ToMongoDatabase
+* Connect-ToMongoDatabase
 
-*ConvertFrom-BsonToJson
+* ConvertFrom-BsonToJson
 
-*Get-AllDocumentsFromMongoCollection
+* Get-AllDocumentsFromMongoCollection
 
-*Import-MongoDLLs
+* Import-MongoDLLs
 
-*New-MongoCollection
+* New-MongoCollection
 
-*New-MongoDatabase
+* New-MongoDatabase
 
-*Remove-JsonDocumentFromMongoCollection
+* Remove-JsonDocumentFromMongoCollection
 
-*Remove-MongoCollection
+* Remove-MongoCollection
 
-*Remove-MongoDatabase
+* Remove-MongoDatabase
 
