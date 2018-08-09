@@ -49,7 +49,7 @@ New-MongoCollection -MongoConnection $MyMongoConnection_WithAuth_ServerBind -New
 <#================================================================================================================================================
         This example shows how you would connect to the newly created database
 ================================================================================================================================================#>
-Connect-ToMongoDatabase -MongoConnection $MyMongoConnection_WithAuth_ServerBind -DatabaseName "MyNewDatabase"
+Bind-ToMongoDatabase -MongoConnection $MyMongoConnection_WithAuth_ServerBind -DatabaseName "MyNewDatabase"
 #=================================================================================================================================================
 
 
