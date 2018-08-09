@@ -385,7 +385,7 @@ namespace PsMongo
     
 }
 
-function Connect-MongoDatabase
+function New-MongoConnection
 {
     # If database name is empty, mongo will connect to the admin db by default
     [cmdletbinding(DefaultParameterSetName="DFLT")]
