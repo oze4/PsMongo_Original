@@ -3,7 +3,7 @@ Powershell module to interact with MongoDB. [More detailed, "live" examples can 
 
 <h3>PsMongo Advantages</h3>
 
-* Can interact with multiple MongoDB Databases or even instances from one Powershell session
+* Can interact with multiple MongoDB Databases or MongoDB Instances, from one Powershell session
 
 * Grab Mongo Documents from a Collection straight into a PSCustomObject
 
