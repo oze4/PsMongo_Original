@@ -3,6 +3,7 @@ Powershell module to interact with MongoDB
 
 
 <h3>Module Functions</h3>
+
 *Add-JsonDocumentIntoMongoCollection
 
 *Confirm-Selection
