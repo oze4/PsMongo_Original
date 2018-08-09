@@ -20,10 +20,14 @@ Import-MongoDLLs -MongoDBBsonDllLocation "C:\mongo\MongoDB.Bson.dll" -MongoDBDri
         Can either use no auth or local Mongo Auth as authentication sources
         Many different ways to bind to Mongo
 ================================================================================================================================================#>
-$MyMongoConnection_NoAuth_ServerBind     = New-MongoConnection -MongoServerHostname "mongo.domain.com"  # Bind to a server without auth
-$MyMongoConnection_NoAuth_DatabaseBind   = New-MongoConnection -MongoServerHostname "mongo.domain.com" -MongoDatabaseName "MyNewDatabase" # Bind to a server and database with no auth
-$MyMongoConnection_WithAuth_ServerBind   = New-MongoConnection -MongoServerHostname "mongo.domain.com" -MongoUsername "test_user" -MongoPassword "Password1" # Bind to a server with auth
-$MyMongoConnection_WithAuth_DatabaseBind = New-MongoConnection -MongoServerHostname "mongo.domain.com" -MongoDatabaseName "MyNewDatabase" -MongoUsername "test_user" -MongoPassword "Password1" # Bind to a server and database using auth
+# Bind to a server without auth
+$MyMongoConnection_NoAuth_ServerBind     = New-MongoConnection -MongoServerHostname "mongo.domain.com"  
+# Bind to a server and database with no auth
+$MyMongoConnection_NoAuth_DatabaseBind   = New-MongoConnection -MongoServerHostname "mongo.domain.com" -MongoDatabaseName "MyNewDatabase" 
+# Bind to a server with auth
+$MyMongoConnection_WithAuth_ServerBind   = New-MongoConnection -MongoServerHostname "mongo.domain.com" -MongoUsername "test_user" -MongoPassword "Password1" 
+# Bind to a server and database using auth
+$MyMongoConnection_WithAuth_DatabaseBind = New-MongoConnection -MongoServerHostname "mongo.domain.com" -MongoDatabaseName "MyNewDatabase" -MongoUsername "test_user" -MongoPassword "Password1" 
 # AFTER RUNNING New-MongoConnection - VIEW THE CONTENTS OF THE VARIABLE YOU TIE THE RETURN TO
 #=================================================================================================================================================
 
