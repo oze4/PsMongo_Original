@@ -110,21 +110,18 @@ namespace PsMongo
         private string MongoPassword { get; set; }
         private IMongoClient IMongoClient { get; set; }
         private IMongoDatabase IMongoDatabase { get; set; }
-        
 
         public PsMongoContext(string mongoServer)
         {
             this.MongoServer = mongoServer;
             this.BindToMongo(mongoServer);
         }
-
         public PsMongoContext(string mongoServer, string databaseName)
         {
             this.MongoServer = mongoServer;
             this.MongoDatabaseName = databaseName;
             this.BindToMongo(mongoServer, databaseName);
         }
-
         public PsMongoContext(string mongoServer, string localmongousername, string localmongopassword)
         {
             this.MongoServer = mongoServer;
@@ -132,7 +129,6 @@ namespace PsMongo
             this.MongoPassword = localmongopassword;
             this.BindToMongo(mongoServer, localmongousername, localmongopassword);
         }
-
         public PsMongoContext(string mongoServer, string databaseName, string localmongousername, string localmongopassword)
         {
             this.MongoServer = mongoServer;
@@ -141,40 +137,55 @@ namespace PsMongo
             this.MongoPassword = localmongopassword;
             this.BindToMongo(mongoServer, databaseName, localmongousername, localmongopassword);
         }
-
         private PsMongoContext BindToMongo(string server)
         {
             try
             {
                 var connectionString = string.Format("mongodb://{0}:27017", server);
-                this.IMongoClient = new MongoClient(connectionString);
-                this.MongoIsConnected = true;
-                return this;
+                this.IMongoClient = new MongoClient(connectionString);               
+                var dbs = IMongoClient.ListDatabases().ToList();
+                if (dbs != null)
+                {
+                    this.MongoIsConnected = true;
+                    return this;
+                }
+                else
+                {
+                    this.MongoIsConnected = false;
+                    return null;
+                }                
             }
-            catch
+            catch (Exception e)
             {
                 this.MongoIsConnected = false;
-                return null;
+                throw new Exception("Something went wrong Binding to Mongo! Full Error:\r\n\r\n" + e.Message);
             }
         }
-
         private PsMongoContext BindToMongo(string server, string databasename)
         {
             try
             {
                 var connectionString = string.Format("mongodb://{0}:27017/{1}", server, databasename);
                 this.IMongoClient = new MongoClient(connectionString);
-                this.IMongoDatabase = this.IMongoClient.GetDatabase(databasename);
-                this.MongoIsConnected = true;
-                return this;
+                var dbs = IMongoClient.ListDatabases().ToList();
+                if (dbs != null)
+                {
+                    this.MongoIsConnected = true;
+                    this.IMongoDatabase = this.IMongoClient.GetDatabase(databasename);
+                    return this;
+                }
+                else
+                {
+                    this.MongoIsConnected = false;
+                    return null;
+                }                
             }
-            catch
+            catch (Exception e)
             {
                 this.MongoIsConnected = false;
-                return null;
+                throw new Exception("Something went wrong Binding to Mongo! Full Error:\r\n\r\n" + e.Message);
             }
         }
-
         private PsMongoContext BindToMongo(string server, string localmongousername, string localmongopassword)
         {
             try
@@ -184,13 +195,12 @@ namespace PsMongo
                 this.MongoIsConnected = true;
                 return this;
             }
-            catch
+            catch (Exception e)
             {
                 this.MongoIsConnected = false;
-                return null;
+                throw new Exception("Something went wrong Binding to Mongo! Full Error:\r\n\r\n" + e.Message);
             }
         }
-
         private PsMongoContext BindToMongo(string server, string databasename, string localmongousername, string localmongopassword)
         {
             try
@@ -201,13 +211,12 @@ namespace PsMongo
                 this.MongoIsConnected = true;
                 return this;
             }
-            catch
+            catch (Exception e)
             {
                 this.MongoIsConnected = false;
-                return null;
+                throw new Exception("Something went wrong Binding to Mongo! Full Error:\r\n\r\n" + e.Message);
             }
         }
-
         private bool BindToMongoDatabase(string dbname)
         {
             if (this.MongoServer == null)
@@ -222,12 +231,11 @@ namespace PsMongo
                 return true;
             }
         }
-
         public bool ConnectToMongoDatabase(string databasename)
         {
             return this.BindToMongoDatabase(databasename);
         }
-        
+
         public bool CreateNewDatabase(string databaseName, string collectionName) // each database must be created with a collection or else empty databases remove themselves
         {
             try
@@ -242,7 +250,6 @@ namespace PsMongo
                 throw new Exception("Something went wrong creating database. Full Error\r\n\r\n" + e.Message);
             }
         }
-
         public bool RemoveDatabase(string databaseName)
         {
             try
@@ -255,7 +262,6 @@ namespace PsMongo
                 throw new Exception("Something went wrong while removing database '" + databaseName + "'.\r\nFull Error\r\n\r\n" + e.Message);
             }
         }
-
         public bool CreateNewCollection(string collectionName)
         {
             try
@@ -268,7 +274,6 @@ namespace PsMongo
                 throw new Exception("Something went wrong creating database. Full Error\r\n\r\n" + e.Message);
             }
         }
-
         public bool RemoveCollection(string collectionName)
         {
             try
@@ -281,7 +286,6 @@ namespace PsMongo
                 throw new Exception("Something went wrong while removing collection '" + collectionName + "'.\r\nFull Error\r\n\r\n" + e.Message);
             }
         }
-
         public List<BsonDocument> GetAllDocumentsFromCollection(string collectionName)
         {
             try
@@ -294,7 +298,6 @@ namespace PsMongo
                 throw new Exception("Something went wrong while gather documents from collection: '" + collectionName + "'!\r\nFull Error:\r\n\r\n" + e.Message);
             }
         }
-
         public IMongoCollection<BsonDocument> GetMongoCollection(string collectionName)
         {
             try
@@ -306,7 +309,6 @@ namespace PsMongo
                 throw new Exception("Something went wrong while locating collection: '" + collectionName + "'!\r\nFull Error:\r\n\r\n" + e.Message);
             }
         }
-
         public bool InsertDocumentIntoMongoCollection(string json, string collectionName)
         {
             try
@@ -321,7 +323,6 @@ namespace PsMongo
                 throw new Exception("Something went wrong while inserting document into collection!\r\n\r\nFull Error:\r\n\r\n" + e.Message);
             }
         }
-
         public bool RemoveDocumentFromMongoCollection(string jsonDocument, string collectionName)
         {
             try
@@ -345,7 +346,6 @@ namespace PsMongo
             }
         }
     }
-
     public class MongoConverter
     {
         public static string BSONtoJSON(BsonDocument bson)
@@ -353,13 +353,11 @@ namespace PsMongo
             // JsonOutputMode.Strict is what lets us pull from MongoDB straight into PSCustomObject
             return bson.ToJson(new JsonWriterSettings { OutputMode = JsonOutputMode.Strict });
         }
-
         public static BsonDocument JSONtoBSON(string json)
         {
             return MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(json);
         }
     }
-
 }
 "@
         ##########################################################################################################
