@@ -177,7 +177,7 @@ namespace PsMongo
                 else
                 {
                     this.MongoIsConnected = false;
-                    return null;
+                    throw new Exception("Unable to query for databases on server '" + server + "'!");
                 }                
             }
             catch (Exception e)
