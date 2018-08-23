@@ -15,7 +15,7 @@ Powershell module to interact with MongoDB. [More detailed, "live" examples can 
 <h3>Module Functions</h3>
 
 * Import-PsMongoDLL
-    * Must be used as the first command after the module is imported. Use parameter ```powershell'-PsMongoDllLocation'``` to point to the location that you saved PsMongo.dll to
+    * Must be used as the first command after the module is imported. Use parameter ```powershell -PsMongoDllLocation``` to point to the location that you saved PsMongo.dll to
 
 * New-MongoConnection
     * Must be ran "second" in order to interact with MongoDB.
