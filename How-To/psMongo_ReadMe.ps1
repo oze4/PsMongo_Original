@@ -8,7 +8,7 @@
 <#================================================================================================================================================
         *HAVE TO IMPORT MONGO DLLs FIRST!!!*
  ================================================================================================================================================#>
-Import-MongoDLLs -MongoDBBsonDllLocation "C:\mongo\MongoDB.Bson.dll" -MongoDBDriverCoreDllLocation "C:\mongo\MongoDB.Driver.Core.dll" -MongoDBDriverDllLocation "C:\mongo\MongoDB.Driver.dll"
+Import-PsMongoDLL -PsMongoDllLocation "C:\mongo\PsMongo.dll"
 #=================================================================================================================================================
 
 
