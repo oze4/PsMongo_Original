@@ -72,11 +72,9 @@ function Import-PsMongoDLL
     
     try { 
        Import-Module $PsMongoDllLocation        
-    } catch {
-    
+    } catch {    
         $Global:MONGO_SESSION_INFO.ImportedDlls = $false
-        Write-Host "`r`n               Unable to import PsMongo.dll!                `r`n`r`nFull Error:`r`n`r`n$($_)`r`n`r`n" -f Red -b Black
-        
+        Write-Host "`r`n               Unable to import PsMongo.dll!                `r`n`r`nFull Error:`r`n`r`n$($_)`r`n`r`n" -f Red -b Black        
     }
     
 }
