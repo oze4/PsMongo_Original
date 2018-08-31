@@ -352,7 +352,7 @@ function Confirm-Selection
 {
 
     param(
-        [Parameter(Mandatory=$false)]
+        [Parameter(Mandatory=$true)]
         [ValidateSet("DatabaseDrop", "CollectionDrop")]
         [string]$Confirm
     )
@@ -370,7 +370,7 @@ function Confirm-Selection
     if(($Answer -ne "1") -and ($Answer -ne "2")){
         Write-Host "Please make a valid selection!" -f Red
         Pause
-        Confirm-Selection
+        Confirm-Selection -Confirm $Confirm
     } else {
         switch($Answer){
             "1" { return $true }
